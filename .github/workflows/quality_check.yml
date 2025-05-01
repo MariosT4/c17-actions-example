@@ -1,8 +1,13 @@
 on:
   push:
 jobs:
-  talk:
+  quality:
+    name: "Quality checks"
     runs-on: ubuntu-latest
     steps:
-      - name: run_command
-        run: echo "Hello!"
+      - name: "Get code"
+        uses: actions/checkout@v4
+      - name: "Install packages"
+        run: pip install -r requirements.txt
+      - name: "Run tests"
+        run: pytest
